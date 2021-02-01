@@ -4,6 +4,8 @@
 
 :bulb: `TD1_screenshot.pdf` &rarr; PDF regrouprant les screenshots de l'application TD1
 
+:bulb: `TD1_ex6.pdf` &rarr; Méta-Modèle Android (TD1 Exercice 6)
+
 :bulb: `MyFirstApplication` &rarr; Application du TP1 (Exercice 6 en cours de développement...)
 
 
