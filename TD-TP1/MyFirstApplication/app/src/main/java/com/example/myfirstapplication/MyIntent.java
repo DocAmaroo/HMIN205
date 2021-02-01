@@ -20,5 +20,10 @@ public class MyIntent extends AppCompatActivity {
 
         TextView userDataDisplay = findViewById(R.id.user_data);
         userDataDisplay.setText(userData);
+
+        findViewById(R.id.ok_button).setOnClickListener(v -> {
+            Intent okIntent = new Intent(this, OkActivity.class);
+            startActivity(okIntent);
+        });
     }
 }
