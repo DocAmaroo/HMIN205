@@ -11,7 +11,16 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class MyIntent extends AppCompatActivity {
+
+    private String name;
+    private String firstname;
+    private String birthday;
+    private String phonenumber;
+    private String foe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,19 +31,34 @@ public class MyIntent extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        String userData = intent.getStringExtra("userData");
+
+        // Retrieve data
+        this.name = intent.getStringExtra("userName");
+        this.firstname = intent.getStringExtra("userFirstName");
+        this.birthday = intent.getStringExtra("userBirhday");
+        this.phonenumber = intent.getStringExtra("userPhoneNumber");
+        this.foe = intent.getStringExtra("userFieldOfExp");
 
         TextView userDataDisplay = findViewById(R.id.user_data);
-        userDataDisplay.setText(userData);
+        userDataDisplay.setText(userDataToString());
 
         findViewById(R.id.ok_button).setOnClickListener(v -> {
             Intent okIntent = new Intent(this, OkActivity.class);
+            okIntent.putExtra("userPhoneNumber", this.phonenumber);
             startActivity(okIntent);
         });
 
         findViewById(R.id.return_button).setOnClickListener(v -> {
             this.finish();
         });
+    }
+
+    private String userDataToString() {
+        String result = getString(R.string.welcome) + " " + this.firstname + " " + this.name + " !";
+        result += "\n" + getString(R.string.label_birthday) + " "  + this.birthday;
+        result += "\n" + getString(R.string.label_phone_number) + " "  + this.phonenumber;
+        result += "\n" + getString(R.string.label_field_of_expertise) + " "  + this.foe;
+        return result;
     }
 
     // this event will enable the back function to the button on press

@@ -6,11 +6,13 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
             // On Yes
             userConfirmationDialog.setPositiveButton(R.string.yes, (dialog, which) -> {
-                Toast.makeText(getApplicationContext(), getInformation(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), userDataToString(), Toast.LENGTH_LONG).show();
             });
 
             // On No
@@ -73,20 +75,23 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
         });
     }
 
-    private String getInformation() {
+    private ArrayList<String> getInformation() {
+        ArrayList<String> userData = new ArrayList<>();
+
         EditText userName = findViewById(R.id.user_name);
         EditText userFirstName = findViewById(R.id.user_first_name);
         TextView userBirthday = findViewById(R.id.user_birthday);
         EditText userPhoneNumber = findViewById(R.id.user_phone_number);
         EditText userFieldOfExp = findViewById(R.id.user_field_of_expertise);
 
-        // Get information give by the user
-        String result = getString(R.string.welcome) + " " + userFirstName.getText() + " " + userName.getText() + " !";
-        result += "\n" + getString(R.string.label_birthday) + " "  + userBirthday.getText();
-        result += "\n" + getString(R.string.label_phone_number) + " "  + userPhoneNumber.getText();
-        result += "\n" + getString(R.string.label_field_of_expertise) + " "  + userFieldOfExp.getText();
 
-        return result;
+        userData.add(userName.getText().toString());
+        userData.add(userFirstName.getText().toString());
+        userData.add(userBirthday.getText().toString());
+        userData.add(userPhoneNumber.getText().toString());
+        userData.add(userFieldOfExp.getText().toString());
+
+        return userData;
     }
 
     private void showDatePickerDialog() {
@@ -98,6 +103,16 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
                 Calendar.getInstance().get(Calendar.DATE)
         );
         date.show();
+    }
+
+    private String userDataToString() {
+        ArrayList<String> userData = getInformation();
+        String result = getString(R.string.welcome) + " " + userData.get(1) + " " + userData.get(0) + " !";
+        result += "\n" + getString(R.string.label_birthday) + " "  + userData.get(2);
+        result += "\n" + getString(R.string.label_phone_number) + " "  + userData.get(3);
+        result += "\n" + getString(R.string.label_field_of_expertise) + " "  + userData.get(4);
+
+        return result;
     }
 
     @Override
@@ -112,8 +127,15 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
     }
 
     private void openNewIntent() {
+        ArrayList<String> userData = getInformation();
         Intent intent = new Intent(this, MyIntent.class);
-        intent.putExtra("userData", getInformation());
+        intent.putExtra("userName", userData.get(0));
+        intent.putExtra("userFirstName", userData.get(1));
+        intent.putExtra("userBirhday", userData.get(2));
+        intent.putExtra("userPhoneNumber", userData.get(3));
+        intent.putExtra("userFieldOfExp", userData.get(4));
         startActivity(intent);
     }
+
+
 }
