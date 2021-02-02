@@ -6,8 +6,9 @@
 
 :bulb: `TD1_ex6.pdf` &rarr; Méta-Modèle Android (TD1 Exercice 6)
 
-:bulb: `MyFirstApplication` &rarr; Application du TP1 (Exercice 8 en cours de développement...)
+:bulb: `MyFirstApplication` &rarr; Application du TP1 (Exerxice 1 to 7)
 
+:bulb: `Trains` &rarr; Application du TP1 - Exercice 8
 
 ## Exercice 1 - Les différents parties d'une application Android
 
