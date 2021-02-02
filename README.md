@@ -175,3 +175,7 @@ Affichage :
 Quand la checkbox d'id *windows_option* est coché, le message toast suivant : "Bro, try Linux :)" s'affiche.
 
 Quand on click sur le bouton, un message toast montrant le nom suivis de l'état d'une option (coché ou non) s'affiche.
+
+## Exercice 6
+
+[Voir TD1-ex6.pdf](https://github.com/DocAmaroo/HMIN205/blob/main/TD-TP1/TD1_ex6.pdf)
