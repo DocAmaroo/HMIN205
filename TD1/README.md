@@ -1,4 +1,4 @@
-# HMIN205 - TD/TP1
+# HMIN205 - TD1
 
 :bulb: `TD1` &rarr; Application regroupant tout les exercices du TD1
 
